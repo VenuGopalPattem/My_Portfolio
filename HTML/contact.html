@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="../Styles/contact.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a class="logo">Contact</a>
+    </nav>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-form-container">
+                <h2>Get in Touch</h2>
+                <form class="contact-form" action="https://formspree.io/f/mvgwzypo" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="subject" placeholder="Subject">
+                    <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <p id="form-success" style="display:none; color:#7cf03d;">Message sent successfully!</p>
+                <p id="form-error" style="display:none; color:red;">Failed to send message.</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact Info</h3>
+                <p><i class='bx bxs-phone'></i> <a href="tel:7780615074"> +91 7780615074</p></a>
+                <p><i class='bx bxl-gmail'></i> venugopal55305@gmail.com</p>
+                <p><i class='bx bxl-linkedin'></i> <a href="https://www.linkedin.com/in/venugopalpattem-python/"
+                        target="_blank">LinkedIn</a></p>
+                <p><i class='bx bxl-github'></i> <a href="https://github.com/VenuGopalPattem" target="_blank">GitHub</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                document.getElementById('form-success').style.display = 'block';
+                document.getElementById('form-error').style.display = 'none';
+                form.reset();
+            } else {
+                document.getElementById('form-success').style.display = 'none';
+                document.getElementById('form-error').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
